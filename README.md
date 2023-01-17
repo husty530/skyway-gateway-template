@@ -6,7 +6,7 @@ GatewayServer, GatewayClientはAPIの使い方を示したものです。
 js-serverとjs-clientは同じ内容をJavaScriptで書いた場合です。比較に使ってください。  
   
 映像配信にはGStreamerを用いています。  
-Windowsの場合は[ココ](https://gstreamer.freedesktop.org/download/)の"MSVC ~~ runtime installer" みたいなのをインストールするだけです。インストールオプションは"complete"を選んでおいてください。  
+Windowsの場合は[ココ](https://gstreamer.freedesktop.org/download/)の"MinGW ~~ runtime installer" みたいなのをインストールするだけです。インストールオプションは"complete"を選んでおいてください。  
 Linuxの場合は[コッチ](https://qiita.com/kurun_pan/items/f7896d52c1a3fcc947b0)です。  
   
 プログラムの処理自体は見たまんまです。特に説明することはありません。  

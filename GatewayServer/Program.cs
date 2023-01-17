@@ -4,7 +4,7 @@ using Husty.SkywayGateway;
 var key = "API_KEY";
 var id = "server";
 
-var gstPath = $"C:\\gstreamer\\1.0\\msvc_x86_64\\bin\\gst-launch-1.0";
+var gstPath = "C:\\gstreamer\\1.0\\mingw_x86_64\\bin\\gst-launch-1.0";
 
 var peer = await Peer.CreateNewAsync(key, id);
 var dataChannel = await peer.CreateDataChannelAsync();
