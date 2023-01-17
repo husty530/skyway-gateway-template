@@ -3,6 +3,7 @@ using Husty.SkywayGateway;
 
 var key = "API_KEY";
 var id = "client";
+var target = "server";
 
 var gstPath = $"C:\\gstreamer\\1.0\\msvc_x86_64\\bin\\gst-launch-1.0";
 
@@ -10,8 +11,13 @@ var peer = await Peer.CreateNewAsync(key, id);
 var dataChannel = await peer.CreateDataChannelAsync();
 var mediaChannel = await peer.CreateMediaChannelAsync();
 
-var stream = await dataChannel.CallConnectionAsync("server");
-var mediaInfo = await mediaChannel.CallConnectionAsync("server");
+Console.WriteLine($"create peer: {id}"); 
+Console.WriteLine("now calling server ...");
+Console.WriteLine();
+
+var stream = await dataChannel.CallConnectionAsync(target);
+var mediaInfo = await mediaChannel.CallConnectionAsync(target);
+Console.WriteLine($"connected with {dataChannel.RemotePeerId}");
 Console.WriteLine($"Local Video EndPoint: {mediaInfo.LocalVideoEP}");
 Console.WriteLine($"Remote Video EndPoint: {mediaInfo.RemoteVideoEP}");
 
@@ -20,7 +26,7 @@ using var process = Process.Start(new ProcessStartInfo()
     FileName = gstPath,
     Arguments =
         $"-v udpsrc port={mediaInfo.LocalVideoEP.Port} " +
-        $"! application/x-rtp,media=video,encoding-name=H264 " +
+        $"! application/x-rtp,media=video " +
         $"! queue ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink"
 });
 

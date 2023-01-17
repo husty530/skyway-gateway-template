@@ -5,14 +5,18 @@ var key = "API_KEY";
 var id = "server";
 
 var gstPath = $"C:\\gstreamer\\1.0\\msvc_x86_64\\bin\\gst-launch-1.0";
-var videoPath = "HOGE.mp4";
 
 var peer = await Peer.CreateNewAsync(key, id);
 var dataChannel = await peer.CreateDataChannelAsync();
 var mediaChannel = await peer.CreateMediaChannelAsync();
 
+Console.WriteLine($"create peer: {id}");
+Console.WriteLine("now listening for call by client ...");
+Console.WriteLine();
+
 var stream = await dataChannel.ListenAsync();
 var mediaInfo = await mediaChannel.ListenAsync();
+Console.WriteLine($"connected with {dataChannel.RemotePeerId}");
 Console.WriteLine($"Local Video EndPoint: {mediaInfo.LocalVideoEP}");
 Console.WriteLine($"Remote Video EndPoint: {mediaInfo.RemoteVideoEP}");
 
@@ -20,10 +24,9 @@ using var process = Process.Start(new ProcessStartInfo()
 {
     FileName = gstPath,
     Arguments =
-        $"-v filesrc location={videoPath} " +
-        $"! decodebin " +
-        $"! videoscale ! video/x-raw,width=640,height=480 " +
-        $"! x264enc ! rtph264pay " +
+        $"-v ksvideosrc ! decodebin " +
+        $"! video/x-raw,width=640,height=360 " +
+        $"! x264enc tune=zerolatency ! rtph264pay " +
         $"! udpsink host={mediaInfo.RemoteVideoEP.Address} port={mediaInfo.RemoteVideoEP.Port} sync=false"
 });
 
