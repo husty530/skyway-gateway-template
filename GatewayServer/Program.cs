@@ -6,6 +6,7 @@ var id = "server";
 
 var gstPath = "C:\\gstreamer\\1.0\\mingw_x86_64\\bin\\gst-launch-1.0";
 
+var gateway = Process.Start("gateway.exe");
 var peer = await Peer.CreateNewAsync(key, id);
 var dataChannel = await peer.CreateDataChannelAsync();
 var mediaChannel = await peer.CreateMediaChannelAsync();
@@ -47,5 +48,6 @@ while (Console.ReadKey().Key is not ConsoleKey.Escape) ;
 cts.Cancel();
 task.Wait();
 await peer.DisposeAsync();
+gateway.Dispose();
 
 Console.ReadKey();

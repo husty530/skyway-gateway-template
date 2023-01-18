@@ -11,4 +11,10 @@
     <PackageReference Include="Husty.SkywayGateway" Version="0.9.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="gateway.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
