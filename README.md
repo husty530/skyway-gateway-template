@@ -19,6 +19,7 @@ Linuxの場合は[コッチ](https://qiita.com/kurun_pan/items/f7896d52c1a3fcc94
 ## 依存パッケージ
 * [Husty.SkywayGateway](https://github.com/husty530/Husty-public/tree/master/Lib/cs/Husty.SkywayGateway)
 * [RestSharp](https://restsharp.dev/) ... Hustyの方に含まれるので間接的に勝手に入ってきます。  
+* OpenCvSharp ... clientでネットワークストリームを受け取ってます。これを使わずに生のGStreamerやffmpegでも受けることができます。
   
 終了時にPeerの解除に失敗すると同じ名前のPeerが使えなくなります。  
 その場合はGatewayごと(JavaScriptも使ってる場合は相手の通信ごと)再起動する必要があります。  
