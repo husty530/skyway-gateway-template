@@ -52,7 +52,7 @@ using var cap = new VideoCapture(
     $"! queue ! rtph264depay ! avdec_h264 ! videoconvert ! appsink"
 );
 
-Task.Run(() =>
+_ = Task.Run(() =>
 {
     var frame = new Mat();
     while (cap.Read(frame))
