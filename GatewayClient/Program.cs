@@ -66,7 +66,7 @@ var cts = new CancellationTokenSource();
 var task = Task.Run(() =>
 {
     while (!cts.IsCancellationRequested)
-        Console.WriteLine(stream.ReadString());
+        Console.WriteLine(stream.ReadLine());
 });
 
 Console.WriteLine("Press ESC key to exit...");

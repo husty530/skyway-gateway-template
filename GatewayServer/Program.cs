@@ -38,7 +38,7 @@ var task = Task.Run(async () =>
     while (!cts.IsCancellationRequested)
     {
         await Task.Delay(500);
-        await stream.WriteStringAsync($"Hello {counter++}");
+        await stream.TryWriteLineAsync($"Hello {counter++}");
     }
 });
 
